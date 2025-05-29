@@ -21,7 +21,7 @@ for (let i = 0; i < pokemonList.length; i++) {
     if (pokemonList[i].height > 6) {
      document.write('<p>' + pokemonList[i].name + ' height ' + pokemonList[i].height + " wow, that's big!");
     }
-}
+}*/
 
 //Second Version
 for (let i = 0; i < pokemonList.length; i++) {
@@ -30,15 +30,4 @@ let message = '<p>' + pokemonList[i].name + ' height ' + pokemonList[i].height;
     message += " wow, that's big!";
   }
   document.write(message);
-}*/
-
-//Version with forEach function
-pokemonList.forEach(function (pokemon) {
-let message = `<p>${pokemon.name}: ${pokemon.height}`;
-  if (pokemon.height > 6) {
-    message += ` wow, that's big!`;
-  }
-  message += '</p>';
-  document.write(message);
 }
-);
