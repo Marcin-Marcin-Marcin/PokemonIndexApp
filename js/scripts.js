@@ -1,3 +1,5 @@
+/*
+//Initial list of Pokemons
 let pokemonList = [
     {name: 'bulbasaur', height: 7, type: ['grass','poison']},
     {name: 'gothitelle', height: 1.5, type: 'psychic'},
@@ -9,6 +11,7 @@ let pokemonList = [
     {name: 'milotic', height: 2, type: 'water'},
     {name: 'swanna', height: 1.3, type: ['water','flying']}
 ];
+*/
 
 /*First version
 // Printing out the details of each Pokemon
@@ -30,10 +33,44 @@ let message = '<p>' + pokemonList[i].name + ' height ' + pokemonList[i].height;
     message += " wow, that's big!";
   }
   document.write(message);
-}*/
+}
 
 //Version with forEach function
 pokemonList.forEach(function (pokemon) {
+let message = `<p>${pokemon.name}: ${pokemon.height}`;
+  if (pokemon.height > 6) {
+    message += ` wow, that's big!`;
+  }
+  message += '</p>';
+  document.write(message);
+}
+);*/
+
+//Pokemon List using IIFE
+let pokemonRepository = (function(){
+let pokemonList = [
+    {name: 'bulbasaur', height: 7, type: ['grass','poison']},
+    {name: 'gothitelle', height: 1.5, type: ['psychic']},
+    {name: 'lugia', height: 5.2, type: ['psychic','flying']},
+    {name: 'mewtwo', height: 2, type: ['psychic']},
+    {name: 'gardevoir', height: 1.6, type: ['psychic','fairy']},
+    {name: 'furret', height: 1.8, type: ['normal']},
+    {name: 'jynx', height: 1.4, type: ['psychic','ice']},
+    {name: 'milotic', height: 2, type: ['water']},
+    {name: 'swanna', height: 1.3, type: ['water','flying']}
+];
+return {
+  add: function(pokemon) {
+  pokemonList.push(pokemon);
+},
+getAll: function() {
+  return pokemonList;
+}
+};
+}) ();
+
+//Version with forEach function adapted for pokemonRepository
+pokemonRepository.getAll().forEach(function (pokemon) {
 let message = `<p>${pokemon.name}: ${pokemon.height}`;
   if (pokemon.height > 6) {
     message += ` wow, that's big!`;
