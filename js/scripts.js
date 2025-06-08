@@ -132,11 +132,70 @@ let pokemonRepository = (function(){
     });
   }
 
-  function showDetails(pokemon) {
+  /* function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
       console.log(pokemon);
     });
+  } */
+
+  function showDetails(pokemon) {
+    loadDetails(pokemon).then(function () {
+      showModal(pokemon.name, 'Height: ' + pokemon.height, pokemon.imageUrl);
+    });
   }
+
+  // Modal-related functions
+  function showModal(title, text, imageUrl) {
+    let modalContainer = document.querySelector('#modal-container');
+    modalContainer.innerHTML = '';
+
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    let closeButton = document.createElement('button');
+    closeButton.classList.add('modal-close');
+    closeButton.innerText = '×';
+    closeButton.addEventListener('click', hideModal);
+
+    let titleElement = document.createElement('h1');
+    titleElement.innerText = title;
+
+    let contentElement = document.createElement('p');
+    contentElement.innerText = text;
+
+    let imageElement = document.createElement('img');
+    imageElement.src = imageUrl;
+    imageElement.alt = title;
+    imageElement.style.width = '100%';
+    imageElement.style.height = 'auto';
+
+    modal.appendChild(closeButton);
+    modal.appendChild(titleElement);
+    modal.appendChild(contentElement);
+    modal.appendChild(imageElement);
+    modalContainer.appendChild(modal);
+
+    modalContainer.classList.add('is-visible');
+  }
+
+  function hideModal() {
+    let modalContainer = document.querySelector('#modal-container');
+    modalContainer.classList.remove('is-visible');
+  }
+
+  window.addEventListener('keydown', (e) => {
+    let modalContainer = document.querySelector('#modal-container');
+    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+      hideModal();
+    }
+  });
+
+  document.querySelector('#modal-container').addEventListener('click', (e) => {
+    let modalContainer = document.querySelector('#modal-container');
+    if (e.target === modalContainer) {
+      hideModal();
+    }
+  });
 
   return {
     add: add,
