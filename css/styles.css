@@ -404,6 +404,8 @@ main {
   }
 }
 
+/*
+// Replaced with Bootstrap
 #modal-container {
   display: none;
 }
@@ -442,3 +444,4 @@ main {
   cursor: pointer;
   color: #888;
 }
+  */
