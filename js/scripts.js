@@ -88,7 +88,10 @@ let pokemonRepository = (function(){
     let button = document.createElement('button');
 
     button.innerText = pokemon.name;
-    button.classList.add('pokemon-button');
+    button.classList.add('btn', 'btn-primary', 'btn-block');
+
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#pokemon-modal');
 
     button.addEventListener('click', function() {
       showDetails(pokemon);
@@ -143,7 +146,7 @@ let pokemonRepository = (function(){
       showModal(pokemon.name, 'Height: ' + pokemon.height, pokemon.imageUrl);
     });
   }
-
+/*
   // Modal-related functions
   function showModal(title, text, imageUrl) {
     let modalContainer = document.querySelector('#modal-container');
@@ -196,6 +199,19 @@ let pokemonRepository = (function(){
       hideModal();
     }
   });
+*/
+
+// Bootstrap replacement
+  function showModal(title, text, imageUrl) {
+    let modalTitle = document.querySelector('#pokemon-modal-label');
+    let modalBodyText = document.querySelector('.pokemon-height');
+    let modalImage = document.querySelector('.pokemon-image');
+
+    modalTitle.innerText = title;
+    modalBodyText.innerText = text;
+    modalImage.src = imageUrl;
+    modalImage.alt = title;
+  }
 
   return {
     add: add,
